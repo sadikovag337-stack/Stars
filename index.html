@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cosmostars</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="app" class="bg-night">
+ <div class="scr on" id="menu">
+  <div class="logo-wrap">
+    <div class="logo-glow"></div>
+    <h1 class="logo">COSMOSTARS</h1>
+    <div class="logo-sub">КОСМИЧЕСКАЯ АРКАДА</div>
+  </div>
+  <div class="stats"><span class="pill">🏆 <b id="mr">0</b></span><span class="pill">✈️ <b id="pr">0</b></span><span class="pill">🟡 <b id="mg">0</b></span></div>
+  <div class="mode-list">
+   <button class="btn o" onclick="startArc()">☄️ Звёздопад <small>Лови звёзды, избегай бомб</small></button>
+   <button class="btn g" onclick="startPuz()">🧩 Блок-бласт <small>Собирай линии и набирай очки</small></button>
+   <button class="btn flight" onclick="show('flight-select')">✈️ Звёздный пилот <small>Сюжет, бесконечный полёт и боссы</small></button>
+   <button class="btn p" onclick="openShop()">✨ Магазин и улучшения</button>
+  </div>
+  <button class="btn settings-menu" id="sound-toggle" onclick="show('settings')">⚙ Настройки</button>
+  <div class="hint">Swift Games</div>
+ </div>
+ <div class="scr" id="settings">
+  <h2>Настройки</h2>
+  <div class="settings-list">
+   <div class="setting-row"><span><b>Звук</b><small>Музыка и звуковые эффекты</small></span><button class="tab" id="sound-setting" onclick="toggleSetting('sound')">Включён</button></div>
+   <div class="setting-row"><span><b>Частицы и вспышки</b><small>Эффекты попаданий, взрывов и очистки</small></span><button class="tab" id="effects-setting" onclick="toggleSetting('effects')">Включены</button></div>
+   <div class="setting-row"><span><b>Тряска камеры</b><small>Визуальная отдача при ударах</small></span><button class="tab" id="shake-setting" onclick="toggleSetting('shake')">Включена</button></div>
+  </div>
+  <div class="hint">Настройки сохраняются автоматически.</div>
+  <button class="pill" onclick="toMenu()">← В главное меню</button>
+ </div>
+ <div class="scr" id="flight-select">
+  <div class="logo-wrap">
+    <div class="logo-glow"></div>
+    <h1 class="logo small">STAR PILOT</h1>
+    <div class="logo-sub">ВЫБЕРИ РЕЖИМ ПОЛЁТА</div>
+  </div>
+  <div class="mode-list">
+   <button class="btn o" onclick="startPlane('story')">📖 Сюжетная кампания <small id="story-progress">30 уровней</small></button>
+   <button class="btn p" onclick="startPlane('story',1)">↻ Новая кампания <small>Начать историю с первого уровня</small></button>
+   <button class="btn flight" onclick="startPlane('endless')">♾️ Бесконечный полёт <small>Проверь, как долго продержишься</small></button>
+  </div>
+  <div class="hint">Двигай самолёт пальцем, мышью или стрелками. Орудия стреляют автоматически.</div>
+  <button class="pill" onclick="toMenu()">← В главное меню</button>
+ </div>
+ <div class="scr" id="game">
+  <button class="x left" aria-label="В меню" onclick="toMenu()">✕</button>
+  <button class="x right" id="pause-btn" aria-label="Пауза" onclick="pauseGame()">Ⅱ</button>
+  <div id="hud"><div id="hl"></div><div id="hr"></div></div>
+  <div id="bw"><canvas id="cv" aria-label="Игровое поле"></canvas></div>
+  <div id="ban">Лови звёзды и драгоценности · не дай им упасть!</div>
+  <div id="over"><h2 id="ot"></h2><div id="os"></div>
+   <button class="btn y overlay-btn" onclick="again()">Ещё раз</button>
+   <button class="btn p overlay-btn" onclick="openShop()">Магазин</button>
+   <button class="pill" style="border:0;color:#fff" onclick="toMenu()">Меню</button></div>
+  <div id="pause-screen">
+   <h2>Пауза</h2><div class="hint">Передохни — звёзды подождут.</div>
+   <button class="btn y overlay-btn" onclick="resumeGame()">Продолжить</button>
+   <button class="btn p overlay-btn" onclick="again()">Начать заново</button>
+   <button class="pill" onclick="toMenu()">В меню</button>
+  </div>
+  <div id="stage-screen">
+   <div class="stage-emblem">✦</div><h2 id="stage-title">Уровень пройден!</h2><div id="stage-copy"></div>
+   <button class="btn y overlay-btn" id="stage-next" onclick="nextPlaneStage()">Дальше</button>
+   <button class="pill" onclick="toMenu()">В меню</button>
+  </div>
+ </div>
+ <div class="scr" id="shop">
+  <h2>Магазин</h2>
+  <div class="tabs" id="tabs"></div>
+  <div class="wallet">Баланс: <span id="sg"></span> 🟡</div>
+  <div class="grid" id="sgrid"></div>
+  <button class="pill shop-back" onclick="closeShop()">← Назад</button>
+ </div>
+</div>
+<script src="game.js"></script>
+</body></html>
