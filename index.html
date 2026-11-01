@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Звёздопад</title>
+<title>Cosmostars</title>
 <link rel="stylesheet" href="style.css">
 </head><body>
-<div id="app">
+<div id="app" class="bg-night">
  <div class="scr on" id="menu">
-  <div class="brand"><h1>ЗВЁЗДОПАД</h1><div class="sub">КОСМИЧЕСКАЯ АРКАДА</div></div>
-  <div class="hero-star" aria-hidden="true">🌟</div>
+  <div class="logo-wrap">
+    <div class="logo-glow"></div>
+    <h1 class="logo">COSMOSTARS</h1>
+    <div class="logo-sub">КОСМИЧЕСКАЯ АРКАДА</div>
+  </div>
   <div class="stats"><span class="pill">🏆 <b id="mr">0</b></span><span class="pill">✈️ <b id="pr">0</b></span><span class="pill">🟡 <b id="mg">0</b></span></div>
   <div class="mode-list">
    <button class="btn o" onclick="startArc()">☄️ Звёздопад <small>Лови звёзды, избегай бомб</small></button>
-   <button class="btn g" onclick="startPuz()">🧩 Блок-пазл <small>Собирай линии и набирай очки</small></button>
+   <button class="btn g" onclick="startPuz()">🧩 Блок-бласт 6×6 <small>Собирай линии и набирай очки</small></button>
    <button class="btn flight" onclick="show('flight-select')">✈️ Звёздный пилот <small>Сюжет, бесконечный полёт и боссы</small></button>
    <button class="btn p" onclick="openShop()">✨ Магазин и улучшения</button>
   </div>
-  <button class="sound-btn" id="sound-toggle" onclick="toggleSound()">Звук: включён</button>
-  <div class="hint">В аркаде двигай корзину пальцем или мышью. На компьютере также работают ← → и A / D.<br>В пазле перетаскивай фигуры на поле.</div>
+  <button class="btn settings-menu" id="sound-toggle" onclick="show('settings')">⚙ Настройки</button>
+  <div class="hint">В аркаде двигай корзину пальцем или мышью. На компьютере также работают ← → и A / D.<br>В блок-бласте перетаскивай фигуры на поле.</div>
+ </div>
+ <div class="scr" id="settings">
+  <h2>Настройки</h2>
+  <div class="settings-list">
+   <div class="setting-row"><span><b>Звук</b><small>Музыка и звуковые эффекты</small></span><button class="tab" id="sound-setting" onclick="toggleSetting('sound')">Включён</button></div>
+   <div class="setting-row"><span><b>Частицы и вспышки</b><small>Эффекты попаданий, взрывов и очистки</small></span><button class="tab" id="effects-setting" onclick="toggleSetting('effects')">Включены</button></div>
+   <div class="setting-row"><span><b>Тряска камеры</b><small>Визуальная отдача при ударах</small></span><button class="tab" id="shake-setting" onclick="toggleSetting('shake')">Включена</button></div>
+  </div>
+  <div class="hint">Настройки сохраняются автоматически.</div>
+  <button class="pill" onclick="toMenu()">← В главное меню</button>
  </div>
  <div class="scr" id="flight-select">
-  <div class="brand"><h1>ЗВЁЗДНЫЙ ПИЛОТ</h1><div class="sub">ВЫБЕРИ РЕЖИМ ПОЛЁТА</div></div>
-  <div class="hero-star" aria-hidden="true">🚀</div>
+  <div class="logo-wrap">
+    <div class="logo-glow"></div>
+    <h1 class="logo small">STAR PILOT</h1>
+    <div class="logo-sub">ВЫБЕРИ РЕЖИМ ПОЛЁТА</div>
+  </div>
   <div class="mode-list">
    <button class="btn o" onclick="startPlane('story')">📖 Сюжетная кампания <small id="story-progress">30 уровней · боссы на 10, 20 и 30</small></button>
    <button class="btn p" onclick="startPlane('story',1)">↻ Новая кампания <small>Начать историю с первого уровня</small></button>
@@ -61,7 +77,3 @@
 </div>
 <script src="game.js"></script>
 </body></html>
-<!--
-ЗНАЧЕНИЕ: index.html — меню «Звёздопада», аркада, блок-пазл, сюжетная кампания и бесконечный режим с боссами, пауза, магазин и экран завершения игры. Подключает style.css и game.js.
-СРЕДА: любой современный браузер (Chrome, Safari, Firefox, Edge), мобильный или ПК. Запуск: открыть index.html; сервер и интернет не нужны. Файлы style.css и game.js должны лежать в одной папке.
--->
